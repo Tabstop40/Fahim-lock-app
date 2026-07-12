@@ -1,0 +1,5 @@
+val apps = pm.getInstalledApplications(PackageManager.GET_META_DATA)
+            .filter {
+                it.packageName != packageName &&
+                pm.getLaunchIntentForPackage(it.packageName) != null
+            }
