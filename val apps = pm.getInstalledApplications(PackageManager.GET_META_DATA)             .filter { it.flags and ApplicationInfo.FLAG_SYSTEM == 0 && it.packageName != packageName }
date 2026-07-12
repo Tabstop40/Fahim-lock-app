@@ -1,0 +1,7 @@
+val launcherIntent = Intent(Intent.ACTION_MAIN, null).addCategory(Intent.CATEGORY_LAUNCHER)
+        val launchablePackages = pm.queryIntentActivities(launcherIntent, 0)
+            .map { it.activityInfo.packageName }
+            .toSet()
+
+        val apps = pm.getInstalledApplications(PackageManager.GET_META_DATA)
+            .filter { launchablePackages.contains(it.packageName) && it.packageName != packageName }
